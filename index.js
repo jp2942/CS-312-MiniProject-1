@@ -5,7 +5,7 @@ app.use(express.urlencoded({ extended: false }));
 const posts = []
 
 app.get("/", function (req, res) {
-  res.render("index");
+  res.render("index", {posts: posts});
 });
 
 app.post("/posts", function (req, res) {
@@ -17,7 +17,7 @@ app.post("/posts", function (req, res) {
     };
     posts.push(newPost);
     console.log(posts);
-    res.send("Form recieved");
+    res.redirect("/");
 });
 
 app.listen(3000, function () {
