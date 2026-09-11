@@ -1,2 +1,2 @@
-# CS-312-MiniProject-1
-Mini Project for Web Programming
+# Blog Web Application Using Node.js, Express.js, and EJS
+This app will allow users to make, edit, view, and delete blog posts. 
