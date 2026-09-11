@@ -21,6 +21,10 @@
             <p>Author: <%= post.author %></p>
             <p>Content: <%= post.content %></p>
             <p>Created: <%= post.createdAt.toLocaleString() %></p>
+            <a href="/posts/<%= post.id %>/edit">Edit</a>
+                <form action="/posts/<%= post.id %>/delete" method="POST">
+                    <button type="sumbit">Delete</button>
+                 </form>
         <% }); %>
   </body>
 </html>
