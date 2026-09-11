@@ -28,6 +28,17 @@ app.post("/posts/:id/edit", function (req, res) {
    res.redirect("/");
 });
 
+app.post("/posts/:id/delete", function (req, res) {
+    const postId = Number(req.params.id);
+    const postIndex = posts.findIndex(function (item) {
+        return item.id === postId;
+    });
+    if (postIndex !== -1) {
+    posts.splice(postIndex,1);
+}
+    res.redirect("/");
+});
+
 app.post("/posts", function (req, res) {
     const newPost = {
         author: req.body.author,
