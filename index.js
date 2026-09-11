@@ -9,6 +9,25 @@ app.get("/", function (req, res) {
   res.render("index", {posts: posts});
 });
 
+app.get("/posts/:id/edit", function (req, res) {
+    const postId = Number(req.params.id);
+    const post = posts.find(function (item) {
+        return item.id === postId;
+    });
+    res.render("edit", { post: post });
+});
+
+app.post("/posts/:id/edit", function (req, res) {
+    const postId = Number(req.params.id);
+    const post = posts.find(function (item) {
+        return item.id === postId;
+    });
+   post.author = req.body.author;
+   post.title = req.body.title;
+   post.content = req.body.content;
+   res.redirect("/");
+});
+
 app.post("/posts", function (req, res) {
     const newPost = {
         author: req.body.author,
