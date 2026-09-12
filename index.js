@@ -1,15 +1,17 @@
-const express = require("express");
+const express = require("express"); // Set up Express and create the app
 const app = express();
-app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static("public"));
-const posts = []
-let nextPostId = 1;
+app.set("view engine", "ejs"); // Use EJS templates to display the pages
+app.use(express.urlencoded({ extended: false })); // Make submitted form fields available in req.body
+app.use(express.static("public")); // Serve files from the public folder
+const posts = [] // Store posts in memory
+let nextPostId = 1; // Track the ID to assign to the next new post
 
-app.get("/", function (req, res) {
+// Display the homepage with the current list of posts.
+app.get("/", function (req, res) { 
   res.render("index", {posts: posts});
 });
 
+// Find the selected post and display its filled-in edit form
 app.get("/posts/:id/edit", function (req, res) {
     const postId = Number(req.params.id);
     const post = posts.find(function (item) {
@@ -22,6 +24,7 @@ app.get("/posts/:id/edit", function (req, res) {
     res.render("edit", { post: post });
 });
 
+// Save the changes submitted through the edit form
 app.post("/posts/:id/edit", function (req, res) {
     const postId = Number(req.params.id);
     const post = posts.find(function (item) {
@@ -37,6 +40,7 @@ app.post("/posts/:id/edit", function (req, res) {
    res.redirect("/");
 });
 
+// Remove the selected post and return to the homepage
 app.post("/posts/:id/delete", function (req, res) {
     const postId = Number(req.params.id);
     const postIndex = posts.findIndex(function (item) {
@@ -48,6 +52,7 @@ app.post("/posts/:id/delete", function (req, res) {
     res.redirect("/");
 });
 
+// Create a new post using the submitted form fields
 app.post("/posts", function (req, res) {
     const newPost = {
         author: req.body.author,
@@ -62,6 +67,7 @@ app.post("/posts", function (req, res) {
     res.redirect("/");
 });
 
+// Start the server on port 3000
 app.listen(3000, function () {
   console.log("Server running at http://localhost:3000");
 });
