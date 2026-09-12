@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>Sedona Travel Tips & Tricks</title>
+    <link rel="stylesheet" href="/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
@@ -17,14 +19,16 @@
             <button type="submit">Create Post</button>
         </form>
         <% posts.forEach(function (post) { %>
-            <h2><%= post.title %></h2>
-            <p>Author: <%= post.author %></p>
-            <p>Content: <%= post.content %></p>
-            <p>Created: <%= post.createdAt.toLocaleString() %></p>
-            <a href="/posts/<%= post.id %>/edit">Edit</a>
-                <form action="/posts/<%= post.id %>/delete" method="POST">
-                    <button type="sumbit">Delete</button>
-                 </form>
+            <article>
+                <h2><%= post.title %></h2>
+                <p>Author: <%= post.author %></p>
+                <p>Content: <%= post.content %></p>
+                <p>Created: <%= post.createdAt.toLocaleString() %></p>
+                    <a href="/posts/<%= post.id %>/edit">Edit</a>
+                        <form action="/posts/<%= post.id %>/delete" method="POST">
+                            <button type="sumbit">Delete</button>
+                        </form>
+            </article>
         <% }); %>
   </body>
 </html>
