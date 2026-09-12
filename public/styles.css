@@ -33,3 +33,6 @@ article {
     padding: 16px;
     margin-top: 24px;
 }
+.post-content {
+    white-space: pre-wrap;
+}

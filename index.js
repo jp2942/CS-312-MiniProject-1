@@ -15,6 +15,10 @@ app.get("/posts/:id/edit", function (req, res) {
     const post = posts.find(function (item) {
         return item.id === postId;
     });
+    if (post === undefined) {
+    res.status(404).send("Post not found");
+    return;
+}
     res.render("edit", { post: post });
 });
 
@@ -23,6 +27,10 @@ app.post("/posts/:id/edit", function (req, res) {
     const post = posts.find(function (item) {
         return item.id === postId;
     });
+    if (post === undefined) {
+    res.status(404).send("Post not found");
+    return;
+}
    post.author = req.body.author;
    post.title = req.body.title;
    post.content = req.body.content;
